@@ -58,5 +58,4 @@ export const people = (state = [], action) => {
     default:
       return state;
   }
-}
-
+};
