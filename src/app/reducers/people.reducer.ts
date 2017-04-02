@@ -1,3 +1,4 @@
+import { ADD_PERSON, REMOVE_PERSON, ADD_GUEST, REMOVE_GUEST, TOGGLE_ATTENDING } from '../actions/app.actions';
 /*
 People Reducer needs to handle 5 actions:
   - add a person
@@ -10,19 +11,19 @@ People Reducer needs to handle 5 actions:
 const details = (state, action) => {
   switch (action.type) {
 
-    case 'ADD_GUEST':
+    case ADD_GUEST:
       if (state.id === action.payload) {
         return Object.assign({}, state, { guests: state.guests + 1 });
       }
       return state;
 
-    case 'REMOVE_GUEST':
+    case REMOVE_GUEST:
       if (state.id === action.payload) {
         return Object.assign({}, state, { guests: state.guests - 1 });
       }
       return state;
 
-    case 'TOGGLE_ATTENDING':
+    case TOGGLE_ATTENDING:
       if (state.id === action.payload) {
         return Object.assign({}, state, { attending: !state.attending });
       }
@@ -35,23 +36,23 @@ const details = (state, action) => {
 
 export const people = (state = [], action) => {
   switch (action.type) {
-    case 'ADD_PERSON':
+    case ADD_PERSON:
       return [
         ...state,
         Object.assign({}, { id: action.payload.id, name: action.payload.name, guests: 0, attending: false })
       ];
 
-    case 'REMOVE_PERSON':
+    case REMOVE_PERSON:
       return state
         .filter(person => person.id !== action.payload);
 
-    case 'ADD_GUEST':
+    case ADD_GUEST:
       return state.map(person => details(person, action));
 
-    case 'REMOVE_GUEST':
+    case REMOVE_GUEST:
       return state.map(person => details(person, action));
 
-    case 'TOGGLE_ATTENDING':
+    case TOGGLE_ATTENDING:
       return state.map(person => details(person, action));
 
     default:
