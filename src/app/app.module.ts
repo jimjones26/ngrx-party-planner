@@ -6,17 +6,30 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { PersonListComponent } from './person-list/person-list.component';
 import { PersonInputComponent } from './person-input/person-input.component';
+import { StoreModule } from '@ngrx/store';
+import { people } from './reducers/people.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { FilterSelectComponent } from './filter-select/filter-select.component';
+import { PartyStatsComponent } from './party-stats/party-stats.component';
+
+import 'rxjs/Rx';
 
 @NgModule({
   declarations: [
     AppComponent,
     PersonListComponent,
-    PersonInputComponent
+    PersonInputComponent,
+    FilterSelectComponent,
+    PartyStatsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    StoreModule.provideStore(people),
+    StoreDevtoolsModule.instrumentOnlyWithExtension({
+      maxAge: 5
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

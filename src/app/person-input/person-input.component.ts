@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-person-input',
+  selector: 'person-input',
   templateUrl: './person-input.component.html',
   styleUrls: ['./person-input.component.css']
 })
-export class PersonInputComponent implements OnInit {
+export class PersonInputComponent {
 
-  constructor() { }
+  @Output() addPerson = new EventEmitter();
 
-  ngOnInit() {
+  add(personInput) {
+    this.addPerson.emit(personInput.value);
+    personInput.value = '';
   }
 
 }
